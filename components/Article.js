@@ -86,7 +86,26 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: "Brenson Whorley, Web Dev student",
+    date: "September 2, 2020",
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. `,
+
+    thirdParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  },
+  {
+    title: "Brenson W is the best Web Dev student ever",
+    date: "September 2, 2020",
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. `,
+
+    thirdParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  },
+
 ];
 
 /*
@@ -114,3 +133,91 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+
+
+
+
+function articleComponent(
+  title,
+  date,
+  firstParagraph,
+  secondParagraph,
+  thirdParagraph
+) {
+  const article = document.createElement("div");
+  const articleTitle = document.createElement("h2");
+  const articleDate = document.createElement("p");
+  const fParagraph = document.createElement("p");
+  const sParagraph = document.createElement("p");
+  const tParagraph = document.createElement("p");
+  const expand = document.createElement("span");
+
+  
+  /// appending the elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(fParagraph);
+  article.appendChild(sParagraph);
+  article.appendChild(tParagraph);
+  article.appendChild(expand);
+
+  /// adding classes to the elements
+  article.classList.add("article");
+  articleDate.classList.add("date");
+  expand.classList.add("expandButton");
+
+  /// adding text content to the elements
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  fParagraph.textContent = firstParagraph;
+  sParagraph.textContent = secondParagraph;
+  tParagraph.textContent = thirdParagraph;
+  expand.textContent = "Expand";
+
+
+
+  /// adding event listener to the expand button to toggle the class (article-open)
+  const articleOpen = document.createElement("div");
+  article.appendChild(articleOpen);
+
+  expand.addEventListener("click", (e) => {
+    const articleOpen = document.querySelector(".article-open");
+    article.classList.toggle("article-open");
+  });
+
+
+  
+  expand.addEventListener("mouseover", () => {
+   
+
+    expand.style.backgroundColor = "green";
+    expand.style.borderRadius = "2px";
+    expand.style.padding = "10px";
+    expand.style.color = "white";
+  });
+  expand.addEventListener("mouseleave", () => {
+    expand.style.color = "";
+    expand.style.backgroundColor = "";
+  });
+  return article;
+}
+
+const getArticle = document.querySelector(".articles");
+
+data.forEach((el) => {
+  getArticle.appendChild(
+    articleComponent(
+      el.title,
+      el.date,
+      el.firstParagraph,
+      el.secondParagraph,
+      el.thirdParagraph
+    )
+  );
+});
+
+
+
+
