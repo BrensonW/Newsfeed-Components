@@ -139,82 +139,76 @@ const data = [
 
 
 
-function articleComponent(
-  title,
-  date,
-  firstParagraph,
-  secondParagraph,
-  thirdParagraph
-) {
+function articleMaker(articles) {
+
   const article = document.createElement("div");
   const articleTitle = document.createElement("h2");
   const articleDate = document.createElement("p");
   const fParagraph = document.createElement("p");
   const sParagraph = document.createElement("p");
   const tParagraph = document.createElement("p");
-  const expand = document.createElement("span");
+  const expandButton = document.createElement("span");
+  
 
   
   /// appending the elements
+
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
   article.appendChild(fParagraph);
   article.appendChild(sParagraph);
   article.appendChild(tParagraph);
-  article.appendChild(expand);
+  article.appendChild(expandButton);
+  
 
   /// adding classes to the elements
   article.classList.add("article");
   articleDate.classList.add("date");
-  expand.classList.add("expandButton");
+  expandButton.classList.add("expandButton");
+  
 
   /// adding text content to the elements
-  articleTitle.textContent = title;
-  articleDate.textContent = date;
-  fParagraph.textContent = firstParagraph;
-  sParagraph.textContent = secondParagraph;
-  tParagraph.textContent = thirdParagraph;
-  expand.textContent = "Expand";
+  
+  articleTitle.textContent = articles.title;
+  articleDate.textContent = articles.date;
+  fParagraph.textContent = articles.firstParagraph;
+  sParagraph.textContent = articles.secondParagraph;
+  tParagraph.textContent = articles.thirdParagraph;
+  expandButton.textContent = "Expand";
+  
 
 
 
   /// adding event listener to the expand button to toggle the class (article-open)
-  const articleOpen = document.createElement("div");
-  article.appendChild(articleOpen);
+  
 
-  expand.addEventListener("click", (e) => {
-    const articleOpen = document.querySelector(".article-open");
+  expandButton.addEventListener("click", (e) => {
     article.classList.toggle("article-open");
   });
  
+ 
   
-  expand.addEventListener("mouseover", () => {
+  expandButton.addEventListener("mouseover", () => {
    
 
-    expand.style.backgroundColor = "green";
-    expand.style.borderRadius = "2px";
-    expand.style.padding = "10px";
-    expand.style.color = "white";
+    expandButton.style.backgroundColor = "green";
+    expandButton.style.borderRadius = "2px";
+    expandButton.style.padding = "10px";
+    expandButton.style.color = "white";
   });
-  expand.addEventListener("mouseleave", () => {
-    expand.style.color = "";
-    expand.style.backgroundColor = "";
+  expandButton.addEventListener("mouseleave", () => {
+    expandButton.style.color = "";
+    expandButton.style.backgroundColor = "";
   });
   return article;
 }
 
 const getArticle = document.querySelector(".articles");
 
-data.forEach((el) => {
-  getArticle.appendChild(
-    articleComponent(
-      el.title,
-      el.date,
-      el.firstParagraph,
-      el.secondParagraph,
-      el.thirdParagraph
-    )
-  );
+data.forEach((data) => {
+  const arts = articleMaker(data)
+getArticle.appendChild(arts)
+
 });
 
 
