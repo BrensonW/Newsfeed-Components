@@ -186,8 +186,7 @@ function articleComponent(
     const articleOpen = document.querySelector(".article-open");
     article.classList.toggle("article-open");
   });
-
-
+ 
   
   expand.addEventListener("mouseover", () => {
    

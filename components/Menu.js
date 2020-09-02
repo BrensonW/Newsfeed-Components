@@ -35,7 +35,6 @@ let menuItems = [
 
 
 
-
 // Creating Funtion
 function menuMaker(array){
   // Defining Elements
